@@ -1,3 +1,3 @@
 # calculator
-![UML Diagram](calculator_uml.png)
+![uml class diagram](calculator_uml.png)
 
