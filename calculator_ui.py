@@ -1,8 +1,9 @@
+"""module for CalculatorView"""
 import tkinter as tk
 from tkinter import ttk
 
 
-class CalculatorView(tk.Tk):
+class CalculatorUI(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Calculator")
@@ -25,11 +26,10 @@ class CalculatorView(tk.Tk):
             "mod": lambda: self.input_display.insert(tk.END, "%")
         }
 
-        # Configure row and column weights to allow resizing
         self.grid_rowconfigure(0, weight=1)
-        for i in range(7):  # 7 rows
+        for i in range(7):
             self.grid_rowconfigure(i + 1, weight=1)
-        for i in range(5):  # 5 columns
+        for i in range(5):
             self.grid_columnconfigure(i, weight=1)
 
     def create_buttons(self):
@@ -81,6 +81,15 @@ class CalculatorView(tk.Tk):
     def insert_with_parentheses(self, func_name):
         self.input_display.insert(tk.END, f"{func_name}(")
 
+    def handle_operator(self, operator):
+        if operator == '=':
+            self.calculate_result()
+        elif operator == 'DEL':
+            self.delete_last()
+        elif operator == 'CLR':
+            self.clear_display()
+        else:
+            self.input_display.insert(tk.END, operator)
+
     def set_controller(self, controller):
         self.controller = controller
-
